@@ -37,20 +37,20 @@ public class UserServiceImpl implements UserService {
   private AuthenticationManager authenticationManager;
 
   public User registerUser(RegisterDTO registerData) {
-    if (userRepository.existsByEmail(registerData.getEmail())) {
+    if (this.userRepository.existsByEmail(registerData.getEmail())) {
       throw new ExistingEmailException();
     }
 
     User user = User.newBuilder().firstName(registerData.getName())
         .lastName(registerData.getLastName()).email(registerData.getEmail())
-        .password(encoder.encode(registerData.getPassword())).build();
+        .password(this.encoder.encode(registerData.getPassword())).build();
     Set<String> strRoles = registerData.getRole();
     Set<Role> roles = new HashSet<>();
 
     strRoles.forEach(role -> {
       switch (role.toLowerCase()) {
         case "admin":
-          Role admin = roleRepository.findByName(RoleName.ROLE_ADMIN)
+          Role admin = this.roleRepository.findByName(RoleName.ROLE_ADMIN)
               .orElseThrow(() -> new IllegalRoleException(String.format(ROLE_NOT_FOUND, "Admin")));
           roles.add(admin);
           break;
@@ -60,16 +60,16 @@ public class UserServiceImpl implements UserService {
     });
 
     user.setRoles(roles);
-    return userRepository.saveAndFlush(user);
+    return this.userRepository.saveAndFlush(user);
 
   }
 
   public AccessToken authenticateUser(LoginDTO loginDto) {
-    Authentication authentication = authenticationManager.authenticate(
+    Authentication authentication = this.authenticationManager.authenticate(
         new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword()));
 
     SecurityContextHolder.getContext().setAuthentication(authentication);
 
-    return new AccessToken(jwtProvider.generateJwtToken(authentication));
+    return new AccessToken(this.jwtProvider.generateJwtToken(authentication));
   }
 }

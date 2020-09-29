@@ -31,11 +31,11 @@ public class JwtAuthTokenFilter extends OncePerRequestFilter {
       FilterChain filterChain) throws ServletException, IOException {
 
     String jwt = getJwt(request);
-    if (!blacklist.check(jwt)) {
-      if (StringUtils.isNotBlank(jwt) && tokenProvider.validateJwtToken(jwt)) {
-        String username = tokenProvider.getUserNameFromJwtToken(jwt);
+    if (!this.blacklist.check(jwt)) {
+      if (StringUtils.isNotBlank(jwt) && this.tokenProvider.validateJwtToken(jwt)) {
+        String username = this.tokenProvider.getUserNameFromJwtToken(jwt);
 
-        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+        UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
         UsernamePasswordAuthenticationToken authentication =
             new UsernamePasswordAuthenticationToken(userDetails, null,
                 userDetails.getAuthorities());

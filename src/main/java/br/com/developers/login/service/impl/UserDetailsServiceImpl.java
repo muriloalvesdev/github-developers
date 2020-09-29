@@ -20,7 +20,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
   @Override
   @Transactional
   public UserDetails loadUserByUsername(String email) {
-    User user = userRepository.findByEmail(email)
+    User user = this.userRepository.findByEmail(email)
         .orElseThrow(() -> new EmailNotFoundException("User Not Found with -> email : " + email));
 
     return UserDTO.build(user);

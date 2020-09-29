@@ -49,7 +49,7 @@ public class JwtBlacklist {
   }
 
   private LocalDateTime getDateExpirationToken(String token) {
-    return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getExpiration()
-        .toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+    return Jwts.parser().setSigningKey(this.jwtSecret).parseClaimsJws(token).getBody()
+        .getExpiration().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
   }
 }

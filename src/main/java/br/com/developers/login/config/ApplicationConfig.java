@@ -28,8 +28,8 @@ public class ApplicationConfig {
   @Bean
   public void createRoleWhenInitializing() {
     Arrays.asList(RoleName.values()).forEach(roleName -> {
-      if (!roleRepository.findByName(roleName).isPresent()) {
-        roleRepository.saveAndFlush(Role.newBuilder().name(roleName).build());
+      if (!this.roleRepository.findByName(roleName).isPresent()) {
+        this.roleRepository.saveAndFlush(Role.newBuilder().name(roleName).build());
       }
     });
   }

@@ -10,7 +10,10 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import br.com.developers.login.domain.model.User;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class UserDTO implements UserDetails {
   private static final long serialVersionUID = -5745731685321252631L;
 
@@ -22,16 +25,6 @@ public class UserDTO implements UserDetails {
   private String password;
 
   private Collection<? extends GrantedAuthority> authorities;
-
-  public UserDTO(UUID id, String name, String lastName, String email, String password,
-      Collection<? extends GrantedAuthority> authorities) {
-    this.id = id;
-    this.name = name;
-    this.lastName = lastName;
-    this.email = email;
-    this.password = password;
-    this.authorities = authorities;
-  }
 
   public static UserDTO build(User user) {
     List<GrantedAuthority> authorities =

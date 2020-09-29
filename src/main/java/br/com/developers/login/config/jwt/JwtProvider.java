@@ -32,21 +32,21 @@ public class JwtProvider {
 
     return Jwts.builder().setSubject((userPrincipal.getEmail())).setIssuedAt(new Date())
         .claim("username", userPrincipal.getName())
-        .setExpiration(new Date((new Date()).getTime() + jwtExpiration))
-        .signWith(SignatureAlgorithm.HS512, jwtSecret).compact();
+        .setExpiration(new Date((new Date()).getTime() + this.jwtExpiration))
+        .signWith(SignatureAlgorithm.HS512, this.jwtSecret).compact();
   }
 
   public String getUserNameFromJwtToken(String token) {
-    return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
+    return Jwts.parser().setSigningKey(this.jwtSecret).parseClaimsJws(token).getBody().getSubject();
   }
 
   public Claims getUserInformation(String token) {
-    return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody();
+    return Jwts.parser().setSigningKey(this.jwtSecret).parseClaimsJws(token).getBody();
   }
 
   public boolean validateJwtToken(String authToken) {
     try {
-      Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
+      Jwts.parser().setSigningKey(this.jwtSecret).parseClaimsJws(authToken);
       return true;
     } catch (SignatureException e) {
       LOG.error("Invalid JWT signature -> Message: {} ", e);
