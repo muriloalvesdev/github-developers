@@ -9,10 +9,9 @@ import org.springframework.context.annotation.Configuration;
 import br.com.developers.login.domain.model.Role;
 import br.com.developers.login.domain.model.Role.RoleName;
 import br.com.developers.login.domain.repository.RoleRepository;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
 @Configuration
 public class ApplicationConfig {
 
