@@ -70,6 +70,6 @@ public class UserServiceImpl implements UserService {
 
     SecurityContextHolder.getContext().setAuthentication(authentication);
 
-    return new AccessToken(this.jwtProvider.generateJwtToken(authentication));
+    return new AccessToken(jwtProvider.generateJwtToken(authentication));
   }
 }
