@@ -1,4 +1,4 @@
-package br.com.developers.login.exception;
+package br.com.developers.exception;
 
 public class RoleNotFoundException extends RuntimeException {
   public RoleNotFoundException(String msg) {

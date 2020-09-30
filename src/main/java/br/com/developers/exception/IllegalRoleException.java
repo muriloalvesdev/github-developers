@@ -1,4 +1,4 @@
-package br.com.developers.login.exception;
+package br.com.developers.exception;
 
 public class IllegalRoleException extends RuntimeException {
 
