@@ -30,9 +30,4 @@ public class Role extends BaseEntity {
   @Enumerated(EnumType.STRING)
   private RoleName name;
 
-  public enum RoleName {
-    ROLE_ADMIN;
-  }
-
-
 }
