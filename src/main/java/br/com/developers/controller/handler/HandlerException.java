@@ -10,6 +10,7 @@ import br.com.developers.exception.EmailNotFoundException;
 import br.com.developers.exception.ExistingEmailException;
 import br.com.developers.exception.IllegalRoleException;
 import br.com.developers.exception.RoleNotFoundException;
+import br.com.developers.exception.UserNotFoundException;
 
 @ControllerAdvice
 public class HandlerException extends ResponseEntityExceptionHandler {
@@ -37,6 +38,12 @@ public class HandlerException extends ResponseEntityExceptionHandler {
 
   @ExceptionHandler(RoleNotFoundException.class)
   public ResponseEntity<ApiException> handleRoleNotFoundException(RoleNotFoundException ex) {
+    return ResponseEntity.status(NOT_FOUND)
+        .body(createResponse(ex.getMessage(), NOT_FOUND.value()));
+  }
+
+  @ExceptionHandler(UserNotFoundException.class)
+  public ResponseEntity<ApiException> handleUserNotFoundException(UserNotFoundException ex) {
     return ResponseEntity.status(NOT_FOUND)
         .body(createResponse(ex.getMessage(), NOT_FOUND.value()));
   }
