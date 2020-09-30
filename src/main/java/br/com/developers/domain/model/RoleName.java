@@ -1,7 +1,7 @@
 package br.com.developers.domain.model;
 
 import java.util.Arrays;
-import br.com.developers.login.exception.IllegalRoleException;
+import br.com.developers.exception.IllegalRoleException;
 
 public enum RoleName {
   ROLE_ADMIN("admin");

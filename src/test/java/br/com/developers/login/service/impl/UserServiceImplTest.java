@@ -23,9 +23,9 @@ import br.com.developers.domain.model.RoleName;
 import br.com.developers.domain.model.User;
 import br.com.developers.domain.repository.RoleRepository;
 import br.com.developers.domain.repository.UserRepository;
+import br.com.developers.exception.ExistingEmailException;
+import br.com.developers.exception.IllegalRoleException;
 import br.com.developers.login.dto.RegisterDTO;
-import br.com.developers.login.exception.ExistingEmailException;
-import br.com.developers.login.exception.IllegalRoleException;
 import br.com.developers.provider.RegisterDTOProviderTests;
 
 class UserServiceImplTest implements UserConstantsForTests {

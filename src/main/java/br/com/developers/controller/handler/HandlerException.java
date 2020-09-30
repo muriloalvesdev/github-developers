@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import br.com.developers.controller.handler.resource.ApiException;
-import br.com.developers.login.exception.EmailNotFoundException;
-import br.com.developers.login.exception.ExistingEmailException;
-import br.com.developers.login.exception.IllegalRoleException;
-import br.com.developers.login.exception.RoleNotFoundException;
+import br.com.developers.exception.EmailNotFoundException;
+import br.com.developers.exception.ExistingEmailException;
+import br.com.developers.exception.IllegalRoleException;
+import br.com.developers.exception.RoleNotFoundException;
 
 @ControllerAdvice
 public class HandlerException extends ResponseEntityExceptionHandler {

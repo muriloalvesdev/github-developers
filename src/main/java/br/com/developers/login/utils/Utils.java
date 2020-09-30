@@ -2,7 +2,7 @@ package br.com.developers.login.utils;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
-import br.com.developers.login.exception.Sha512Exception;
+import br.com.developers.exception.Sha512Exception;
 
 public class Utils {
 

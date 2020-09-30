@@ -17,6 +17,10 @@ public class RegisterDTO {
 
   @Email(message = "email is invalid")
   private String email;
+
+  @NotNull(message = "role is required")
   private Set<String> role;
+
+  @NotNull(message = "password is required")
   private String password;
 }
