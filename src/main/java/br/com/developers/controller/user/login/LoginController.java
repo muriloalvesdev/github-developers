@@ -21,7 +21,6 @@ public class LoginController {
 
   private UserService userService;
 
-
   @PostMapping
   public ResponseEntity<AccessToken> authenticateUser(@Validated @RequestBody LoginDTO loginData) {
     return ResponseEntity.ok().body(userService.authenticateUser(loginData));
