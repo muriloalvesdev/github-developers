@@ -7,7 +7,7 @@ import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import br.com.developers.login.domain.model.Role;
-import br.com.developers.login.domain.model.Role.RoleName;
+import br.com.developers.login.domain.model.RoleName;
 import br.com.developers.login.domain.repository.RoleRepository;
 import lombok.AllArgsConstructor;
 

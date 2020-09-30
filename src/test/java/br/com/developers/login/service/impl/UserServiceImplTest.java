@@ -19,7 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import br.com.developers.config.jwt.JwtProvider;
 import br.com.developers.constants.UserConstantsForTests;
 import br.com.developers.login.domain.model.Role;
-import br.com.developers.login.domain.model.Role.RoleName;
+import br.com.developers.login.domain.model.RoleName;
 import br.com.developers.login.domain.model.User;
 import br.com.developers.login.domain.repository.RoleRepository;
 import br.com.developers.login.domain.repository.UserRepository;
@@ -106,7 +106,6 @@ public class UserServiceImplTest implements UserConstantsForTests {
     });
 
     assertTrue(exception instanceof IllegalRoleException);
-    assertEquals("Fail! -> Cause: Role invalid.", exception.getMessage());
+    assertEquals("Fail! -> Cause: teste is Role invalid.", exception.getMessage());
   }
-
 }
