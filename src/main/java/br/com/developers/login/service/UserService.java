@@ -9,4 +9,8 @@ public interface UserService {
   User registerUser(RegisterDTO registerData);
 
   AccessToken authenticateUser(LoginDTO loginDto);
+
+  void updateUser(RegisterDTO registerData);
+
+  void delete(LoginDTO loginDTO);
 }
