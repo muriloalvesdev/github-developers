@@ -1,4 +1,4 @@
-package br.com.developers.login.config.jwt;
+package br.com.developers.config.jwt;
 
 import java.io.IOException;
 import javax.servlet.FilterChain;

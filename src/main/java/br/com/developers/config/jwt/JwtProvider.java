@@ -1,4 +1,4 @@
-package br.com.developers.login.config.jwt;
+package br.com.developers.config.jwt;
 
 import java.util.Date;
 import org.slf4j.Logger;

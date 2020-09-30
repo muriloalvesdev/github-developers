@@ -1,4 +1,4 @@
-package br.com.developers.login.config;
+package br.com.developers.config;
 
 import java.io.IOException;
 

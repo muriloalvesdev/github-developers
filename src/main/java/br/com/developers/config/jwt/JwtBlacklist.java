@@ -1,4 +1,4 @@
-package br.com.developers.login.config.jwt;
+package br.com.developers.config.jwt;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;

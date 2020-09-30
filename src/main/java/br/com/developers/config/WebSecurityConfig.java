@@ -1,4 +1,4 @@
-package br.com.developers.login.config;
+package br.com.developers.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.firewall.DefaultHttpFirewall;
 import org.springframework.security.web.firewall.HttpFirewall;
-import br.com.developers.login.config.jwt.JwtAuthTokenFilter;
+import br.com.developers.config.jwt.JwtAuthTokenFilter;
 import br.com.developers.login.service.impl.UserDetailsServiceImpl;
 import lombok.AllArgsConstructor;
 
