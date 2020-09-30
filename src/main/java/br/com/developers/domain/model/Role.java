@@ -1,4 +1,4 @@
-package br.com.developers.login.domain.model;
+package br.com.developers.domain.model;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;

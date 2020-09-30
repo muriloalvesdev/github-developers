@@ -1,4 +1,4 @@
-package br.com.developers.login.domain.model;
+package br.com.developers.domain.model;
 
 import java.util.Set;
 import java.util.UUID;

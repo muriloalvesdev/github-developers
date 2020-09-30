@@ -16,10 +16,10 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.BDDMockito;
 import br.com.developers.constants.UserConstantsForTests;
-import br.com.developers.login.domain.model.Role;
-import br.com.developers.login.domain.model.RoleName;
-import br.com.developers.login.domain.model.User;
-import br.com.developers.login.domain.repository.UserRepository;
+import br.com.developers.domain.model.Role;
+import br.com.developers.domain.model.RoleName;
+import br.com.developers.domain.model.User;
+import br.com.developers.domain.repository.UserRepository;
 import br.com.developers.login.exception.EmailNotFoundException;
 
 class UserDetailsServiceImplTest implements UserConstantsForTests {

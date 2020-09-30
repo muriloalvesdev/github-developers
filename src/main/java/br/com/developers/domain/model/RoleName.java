@@ -1,4 +1,4 @@
-package br.com.developers.login.domain.model;
+package br.com.developers.domain.model;
 
 import java.util.Arrays;
 import br.com.developers.login.exception.IllegalRoleException;

@@ -9,7 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import br.com.developers.login.domain.model.User;
+import br.com.developers.domain.model.User;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 

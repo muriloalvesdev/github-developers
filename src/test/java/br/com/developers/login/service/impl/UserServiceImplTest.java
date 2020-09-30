@@ -18,17 +18,17 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import br.com.developers.config.jwt.JwtProvider;
 import br.com.developers.constants.UserConstantsForTests;
-import br.com.developers.login.domain.model.Role;
-import br.com.developers.login.domain.model.RoleName;
-import br.com.developers.login.domain.model.User;
-import br.com.developers.login.domain.repository.RoleRepository;
-import br.com.developers.login.domain.repository.UserRepository;
+import br.com.developers.domain.model.Role;
+import br.com.developers.domain.model.RoleName;
+import br.com.developers.domain.model.User;
+import br.com.developers.domain.repository.RoleRepository;
+import br.com.developers.domain.repository.UserRepository;
 import br.com.developers.login.dto.RegisterDTO;
 import br.com.developers.login.exception.ExistingEmailException;
 import br.com.developers.login.exception.IllegalRoleException;
 import br.com.developers.provider.RegisterDTOProviderTests;
 
-public class UserServiceImplTest implements UserConstantsForTests {
+class UserServiceImplTest implements UserConstantsForTests {
 
   private UserRepository userRepository;
   private RoleRepository roleRepository;

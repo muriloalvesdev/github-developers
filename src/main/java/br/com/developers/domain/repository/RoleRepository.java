@@ -1,9 +1,9 @@
-package br.com.developers.login.domain.repository;
+package br.com.developers.domain.repository;
 
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
-import br.com.developers.login.domain.model.Role;
-import br.com.developers.login.domain.model.RoleName;
+import br.com.developers.domain.model.Role;
+import br.com.developers.domain.model.RoleName;
 
 public interface RoleRepository extends JpaRepository<Role, Long> {
 

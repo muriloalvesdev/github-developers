@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import br.com.developers.login.domain.model.User;
+import br.com.developers.domain.model.User;
 import br.com.developers.login.dto.RegisterDTO;
 import br.com.developers.login.service.UserService;
 import lombok.AccessLevel;
