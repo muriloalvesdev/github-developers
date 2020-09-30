@@ -25,7 +25,9 @@ import br.com.developers.domain.repository.RoleRepository;
 import br.com.developers.domain.repository.UserRepository;
 import br.com.developers.exception.ExistingEmailException;
 import br.com.developers.exception.IllegalRoleException;
+import br.com.developers.login.dto.LoginDTO;
 import br.com.developers.login.dto.RegisterDTO;
+import br.com.developers.provider.LoginDTOProviderTest;
 import br.com.developers.provider.RegisterDTOProviderTests;
 
 class UserServiceImplTest implements UserConstantsForTests {
@@ -126,5 +128,13 @@ class UserServiceImplTest implements UserConstantsForTests {
 
     verify(this.userRepository, times(1)).findByEmail(anyString());
     verify(this.roleRepository, times(1)).findByName(any());
+  }
+
+  @ParameterizedTest
+  @ArgumentsSource(LoginDTOProviderTest.class)
+  void shouldDeleteUser(LoginDTO loginDTO) {
+    BDDMockito.given(this.userRepository.findByEmail(loginDTO.getEmail().toLowerCase()))
+        .willReturn(Optional.of(this.user));
+    BDDMockito.doNothing().when(this.userRepository).delete(this.user);
   }
 }
