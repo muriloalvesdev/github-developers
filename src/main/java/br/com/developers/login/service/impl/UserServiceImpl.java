@@ -66,13 +66,14 @@ class UserServiceImpl implements UserService {
   }
 
 
-  public void updateUser(RegisterDTO registerData) {
+  public User updateUser(RegisterDTO registerData) {
     User user = this.userRepository.findByEmail(registerData.getEmail().toLowerCase()).orElseThrow(
         () -> new UserNotFoundException(String.format(USER_NOT_FOUND, registerData.getEmail())));
-      user.setFirstName(registerData.getName());
-      user.setLastName(registerData.getLastName());
-      user.setPassword(registerData.getPassword());
-      user.setRoles(getAllRoles(registerData));
+    user.setFirstName(registerData.getName());
+    user.setLastName(registerData.getLastName());
+    user.setPassword(registerData.getPassword());
+    user.setRoles(getAllRoles(registerData));
+    return this.userRepository.save(user);
   }
 
   public void delete(LoginDTO loginDTO) {

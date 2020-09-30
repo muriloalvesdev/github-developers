@@ -10,7 +10,7 @@ public interface UserService {
 
   AccessToken authenticateUser(LoginDTO loginDto);
 
-  void updateUser(RegisterDTO registerData);
+  User updateUser(RegisterDTO registerData);
 
   void delete(LoginDTO loginDTO);
 }
