@@ -3,6 +3,7 @@ package br.com.developers.login.service.impl;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
@@ -61,6 +62,8 @@ class UserDetailsServiceImplTest implements UserConstantsForTests {
 
     assertEquals("User Not Found with -> email : ", exception.getMessage());
     assertTrue(exception instanceof EmailNotFoundException);
+
+    verify(this.repository, times(1)).findByEmail(anyString());
   }
 
   @Test
@@ -73,6 +76,8 @@ class UserDetailsServiceImplTest implements UserConstantsForTests {
 
     assertEquals("User Not Found with -> email : null", exception.getMessage());
     assertTrue(exception instanceof EmailNotFoundException);
+
+    verify(this.repository, times(1)).findByEmail(any());
   }
 
 }
