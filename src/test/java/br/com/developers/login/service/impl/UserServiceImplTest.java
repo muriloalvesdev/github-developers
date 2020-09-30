@@ -108,4 +108,23 @@ class UserServiceImplTest implements UserConstantsForTests {
     assertTrue(exception instanceof IllegalRoleException);
     assertEquals("Fail! -> Cause: teste is Role invalid.", exception.getMessage());
   }
+
+  @ParameterizedTest
+  @ArgumentsSource(RegisterDTOProviderTests.class)
+  void shouldUpdateUser(RegisterDTO registerData) {
+    BDDMockito.given(this.userRepository.findByEmail(registerData.getEmail().toLowerCase()))
+        .willReturn(Optional.of(this.user));
+    BDDMockito.given(this.roleRepository.findByName(RoleName.ROLE_ADMIN))
+        .willReturn(Optional.of(this.role));
+    BDDMockito.given(this.userRepository.save(this.user)).willReturn(this.user);
+
+    User user = this.service.updateUser(registerData);
+
+    assertEquals(registerData.getName(), user.getFirstName());
+    assertEquals(registerData.getLastName(), user.getLastName());
+    assertEquals(registerData.getEmail().toLowerCase(), user.getEmail());
+
+    verify(this.userRepository, times(1)).findByEmail(anyString());
+    verify(this.roleRepository, times(1)).findByName(any());
+  }
 }
