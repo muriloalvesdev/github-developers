@@ -10,14 +10,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import br.com.developers.config.jwt.JwtProvider;
 import br.com.developers.login.domain.model.Role;
-import br.com.developers.login.domain.model.Role.RoleName;
+import br.com.developers.login.domain.model.RoleName;
 import br.com.developers.login.domain.model.User;
 import br.com.developers.login.domain.repository.RoleRepository;
 import br.com.developers.login.domain.repository.UserRepository;
 import br.com.developers.login.dto.LoginDTO;
 import br.com.developers.login.dto.RegisterDTO;
 import br.com.developers.login.exception.ExistingEmailException;
-import br.com.developers.login.exception.IllegalRoleException;
+import br.com.developers.login.exception.RoleNotFoundException;
 import br.com.developers.login.http.request.AccessToken;
 import br.com.developers.login.service.UserService;
 import lombok.AccessLevel;
@@ -27,8 +27,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 public class UserServiceImpl implements UserService {
 
-  private static final String ROLE_NOT_FOUND = "Fail! -> Cause: %s Role not find.";
-  private static final String ROLE_INVALID = "Fail! -> Cause: Role invalid.";
+  private static final String ROLE_NOT_FOUND = "Fail! -> Cause: %s Role not found in database.";
 
   private UserRepository userRepository;
   private RoleRepository roleRepository;
@@ -48,16 +47,10 @@ public class UserServiceImpl implements UserService {
     Set<Role> roles = new HashSet<>();
 
     strRoles.forEach(role -> {
-      switch (role.toLowerCase()) {
-        case "admin":
-          Role admin = this.roleRepository.findByName(
-              RoleName.ROLE_ADMIN)
-              .orElseThrow(() -> new IllegalRoleException(String.format(ROLE_NOT_FOUND, "Admin")));
-          roles.add(admin);
-          break;
-        default:
-          throw new IllegalRoleException(ROLE_INVALID);
-      }
+      RoleName roleName = RoleName.find(role);
+      Role permission = this.roleRepository.findByName(roleName)
+          .orElseThrow(() -> new RoleNotFoundException(String.format(ROLE_NOT_FOUND, role)));
+      roles.add(permission);
     });
 
     user.setRoles(roles);
