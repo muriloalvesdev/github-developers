@@ -136,5 +136,10 @@ class UserServiceImplTest implements UserConstantsForTests {
     BDDMockito.given(this.userRepository.findByEmail(loginDTO.getEmail().toLowerCase()))
         .willReturn(Optional.of(this.user));
     BDDMockito.doNothing().when(this.userRepository).delete(this.user);
+
+    this.service.delete(loginDTO);
+
+    verify(this.userRepository, times(1)).findByEmail(anyString());
+    verify(this.userRepository, times(1)).delete(any(User.class));
   }
 }
