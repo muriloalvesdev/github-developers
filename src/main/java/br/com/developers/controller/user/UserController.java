@@ -16,6 +16,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import br.com.developers.domain.model.User;
 import br.com.developers.login.dto.LoginDTO;
 import br.com.developers.login.dto.RegisterDTO;
+import br.com.developers.login.dto.UserDTO;
+import br.com.developers.login.http.request.AccessToken;
 import br.com.developers.login.service.UserService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -26,7 +28,7 @@ import lombok.AllArgsConstructor;
 @RequestMapping("api/user")
 public class UserController {
 
-  private UserService userService;
+  private UserService<RegisterDTO, LoginDTO, User, UserDTO, AccessToken> userService;
 
   @PostMapping("/")
   public ResponseEntity<Object> registerUser(@Validated @RequestBody RegisterDTO registerData) {

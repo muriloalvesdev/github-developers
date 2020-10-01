@@ -28,7 +28,7 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
-class UserServiceImpl implements UserService {
+class UserServiceImpl implements UserService<RegisterDTO, LoginDTO, User, UserDTO, AccessToken> {
 
   private static final String ROLE_NOT_FOUND = "Fail! -> Cause: %s Role not found in database.";
   private static final String USER_NOT_FOUND = "Fail! -> Cause: User not found with %s [%s]";
