@@ -2,6 +2,7 @@ package br.com.developers.login.service.impl;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -19,6 +20,7 @@ import br.com.developers.exception.RoleNotFoundException;
 import br.com.developers.exception.UserNotFoundException;
 import br.com.developers.login.dto.LoginDTO;
 import br.com.developers.login.dto.RegisterDTO;
+import br.com.developers.login.dto.UserDTO;
 import br.com.developers.login.http.request.AccessToken;
 import br.com.developers.login.service.UserService;
 import lombok.AccessLevel;
@@ -89,5 +91,11 @@ class UserServiceImpl implements UserService {
     SecurityContextHolder.getContext().setAuthentication(authentication);
 
     return new AccessToken(jwtProvider.generateJwtToken(authentication));
+  }
+
+  public UserDTO find(String id) {
+    User user = this.userRepository.findById(UUID.fromString(id))
+        .orElseThrow(() -> new UserNotFoundException(String.format(USER_NOT_FOUND, id)));
+    return UserDTO.build(user);
   }
 }
