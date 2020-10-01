@@ -10,9 +10,11 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import java.util.HashSet;
 import java.util.Optional;
+import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ArgumentsSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.BDDMockito;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -28,6 +30,7 @@ import br.com.developers.exception.IllegalRoleException;
 import br.com.developers.exception.UserNotFoundException;
 import br.com.developers.login.dto.LoginDTO;
 import br.com.developers.login.dto.RegisterDTO;
+import br.com.developers.login.dto.UserDTO;
 import br.com.developers.provider.LoginDTOProviderTest;
 import br.com.developers.provider.RegisterDTOProviderTests;
 
@@ -165,6 +168,35 @@ class UserServiceImplTest implements UserConstantsForTests {
         exception.getMessage());
 
     verify(this.userRepository, times(1)).findByEmail(anyString());
+  }
+
+  @ParameterizedTest
+  @ValueSource(strings = {"926c66c4-78f2-45c8-ae52-9c661d1ebb03"})
+  void shouldTryFindAndReturnUserNotFoundException(String id) {
+    BDDMockito.given(this.userRepository.findById(UUID.fromString(id)))
+        .willReturn(Optional.empty());
+
+    Exception exception = assertThrows(Exception.class, () -> {
+      this.service.find(id);
+    });
+
+    assertTrue(exception instanceof UserNotFoundException);
+    assertEquals("Fail! -> Cause: User not found with id [" + id + "]", exception.getMessage());
+
+    verify(this.userRepository, times(1)).findById(any());
+  }
+
+  @ParameterizedTest
+  @ValueSource(strings = {"926c66c4-78f2-45c8-ae52-9c661d1ebb03"})
+  void shouldFind(String id) {
+    BDDMockito.given(this.userRepository.findById(UUID.fromString(id)))
+        .willReturn(Optional.of(this.user));
+
+    UserDTO dto = this.service.find(id);
+
+    assertEquals(this.user.getFirstName(), dto.getName());
+    assertEquals(this.user.getEmail(), dto.getEmail());
+    verify(this.userRepository, times(1)).findById(any());
   }
 
   @ParameterizedTest
