@@ -1,13 +1,16 @@
 package br.com.developers.login.service;
 
-public interface UserService<R, L, U, D, T> {
+import br.com.developers.login.dto.UserDTO;
+import br.com.developers.login.http.request.AccessToken;
+
+public interface UserService<R, L, U> {
   U registerUser(R dto);
 
-  T authenticateUser(L dto);
+  AccessToken authenticateUser(L dto);
 
   U update(R dto);
 
   void delete(L dto);
 
-  D find(String id);
+  UserDTO find(String id);
 }
