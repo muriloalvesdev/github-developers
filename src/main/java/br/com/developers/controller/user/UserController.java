@@ -6,11 +6,11 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import br.com.developers.domain.model.User;
@@ -43,9 +43,9 @@ public class UserController {
         .buildAndExpand(user.getId()).toUri()).build();
   }
 
-  @GetMapping("/{id}")
+  @GetMapping("{id}")
   @PreAuthorize("hasRole('ADMIN')")
-  public ResponseEntity<Object> find(@RequestParam(name = "id") String id) {
+  public ResponseEntity<Object> find(@PathVariable(name = "id") String id) {
     return ResponseEntity.ok(this.userService.find(id));
   }
 
