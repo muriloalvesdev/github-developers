@@ -25,6 +25,7 @@ import br.com.developers.domain.repository.RoleRepository;
 import br.com.developers.domain.repository.UserRepository;
 import br.com.developers.exception.ExistingEmailException;
 import br.com.developers.exception.IllegalRoleException;
+import br.com.developers.exception.UserNotFoundException;
 import br.com.developers.login.dto.LoginDTO;
 import br.com.developers.login.dto.RegisterDTO;
 import br.com.developers.provider.LoginDTOProviderTest;
@@ -120,7 +121,7 @@ class UserServiceImplTest implements UserConstantsForTests {
         .willReturn(Optional.of(this.role));
     BDDMockito.given(this.userRepository.save(this.user)).willReturn(this.user);
 
-    User user = this.service.updateUser(registerData);
+    User user = this.service.update(registerData);
 
     assertEquals(registerData.getName(), user.getFirstName());
     assertEquals(registerData.getLastName(), user.getLastName());
@@ -128,6 +129,42 @@ class UserServiceImplTest implements UserConstantsForTests {
 
     verify(this.userRepository, times(1)).findByEmail(anyString());
     verify(this.roleRepository, times(1)).findByName(any());
+  }
+
+  @ParameterizedTest
+  @ArgumentsSource(RegisterDTOProviderTests.class)
+  void shouldTryUpdateAndReturnUserNotFoundException(RegisterDTO registerData) {
+    BDDMockito.given(this.userRepository.findByEmail(registerData.getEmail().toLowerCase()))
+        .willReturn(Optional.empty());
+
+    Exception exception = assertThrows(Exception.class, () -> {
+      this.service.update(registerData);
+    });
+
+    assertTrue(exception instanceof UserNotFoundException);
+    assertEquals(
+        "Fail! -> Cause: User not found with email [" + registerData.getEmail().toLowerCase() + "]",
+        exception.getMessage());
+
+    verify(this.userRepository, times(1)).findByEmail(anyString());
+  }
+
+  @ParameterizedTest
+  @ArgumentsSource(LoginDTOProviderTest.class)
+  void shouldTryDeleteAndReturnUserNotFoundException(LoginDTO loginDTO) {
+    BDDMockito.given(this.userRepository.findByEmail(loginDTO.getEmail().toLowerCase()))
+        .willReturn(Optional.empty());
+
+    Exception exception = assertThrows(Exception.class, () -> {
+      this.service.delete(loginDTO);
+    });
+
+    assertTrue(exception instanceof UserNotFoundException);
+    assertEquals(
+        "Fail! -> Cause: User not found with email [" + loginDTO.getEmail().toLowerCase() + "]",
+        exception.getMessage());
+
+    verify(this.userRepository, times(1)).findByEmail(anyString());
   }
 
   @ParameterizedTest
