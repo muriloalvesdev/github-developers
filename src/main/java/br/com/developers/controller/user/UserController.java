@@ -38,7 +38,7 @@ public class UserController {
   @PutMapping("/")
   @PreAuthorize("hasRole('ADMIN')")
   public ResponseEntity<Object> update(@Validated @RequestBody RegisterDTO registerData) {
-    User user = this.userService.updateUser(registerData);
+    User user = this.userService.update(registerData);
     return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
         .buildAndExpand(user.getId()).toUri()).build();
   }

@@ -11,7 +11,7 @@ public interface UserService {
 
   AccessToken authenticateUser(LoginDTO loginDto);
 
-  User updateUser(RegisterDTO registerData);
+  User update(RegisterDTO registerData);
 
   void delete(LoginDTO loginDTO);
 

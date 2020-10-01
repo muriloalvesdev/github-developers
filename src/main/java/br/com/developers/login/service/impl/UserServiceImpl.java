@@ -31,7 +31,7 @@ import lombok.AllArgsConstructor;
 class UserServiceImpl implements UserService {
 
   private static final String ROLE_NOT_FOUND = "Fail! -> Cause: %s Role not found in database.";
-  private static final String USER_NOT_FOUND = "Fail! -> Cause: User not found with email [%s]";
+  private static final String USER_NOT_FOUND = "Fail! -> Cause: User not found with %s [%s]";
 
   private UserRepository userRepository;
   private RoleRepository roleRepository;
@@ -68,9 +68,10 @@ class UserServiceImpl implements UserService {
   }
 
 
-  public User updateUser(RegisterDTO registerData) {
-    User user = this.userRepository.findByEmail(registerData.getEmail().toLowerCase()).orElseThrow(
-        () -> new UserNotFoundException(String.format(USER_NOT_FOUND, registerData.getEmail())));
+  public User update(RegisterDTO registerData) {
+    User user = this.userRepository.findByEmail(registerData.getEmail().toLowerCase())
+        .orElseThrow(() -> new UserNotFoundException(
+            String.format(USER_NOT_FOUND, "email", registerData.getEmail())));
     user.setFirstName(registerData.getName());
     user.setLastName(registerData.getLastName());
     user.setPassword(registerData.getPassword());
@@ -79,8 +80,9 @@ class UserServiceImpl implements UserService {
   }
 
   public void delete(LoginDTO loginDTO) {
-    User user = this.userRepository.findByEmail(loginDTO.getEmail().toLowerCase()).orElseThrow(
-        () -> new UserNotFoundException(String.format(USER_NOT_FOUND, loginDTO.getEmail())));
+    User user = this.userRepository.findByEmail(loginDTO.getEmail().toLowerCase())
+        .orElseThrow(() -> new UserNotFoundException(
+            String.format(USER_NOT_FOUND, "email", loginDTO.getEmail())));
     this.userRepository.delete(user);
   }
 
@@ -95,7 +97,7 @@ class UserServiceImpl implements UserService {
 
   public UserDTO find(String id) {
     User user = this.userRepository.findById(UUID.fromString(id))
-        .orElseThrow(() -> new UserNotFoundException(String.format(USER_NOT_FOUND, id)));
+        .orElseThrow(() -> new UserNotFoundException(String.format(USER_NOT_FOUND, "id", id)));
     return UserDTO.build(user);
   }
 }
