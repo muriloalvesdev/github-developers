@@ -30,8 +30,7 @@ public class UserDTO implements UserDetails {
     List<GrantedAuthority> authorities =
         user.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getName().name()))
             .collect(Collectors.toList());
-
-    return new UserDTO(UUID.randomUUID(), user.getFirstName(), user.getLastName(), user.getEmail(),
+    return new UserDTO(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(),
         user.getPassword(), authorities);
   }
 
