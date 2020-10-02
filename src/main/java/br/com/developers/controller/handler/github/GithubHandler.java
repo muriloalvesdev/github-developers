@@ -4,7 +4,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import br.com.developers.github.http.resource.developer.Developer;
 import br.com.developers.github.http.service.developer.GithubUserService;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
 @Component
 public class GithubHandler {
 
