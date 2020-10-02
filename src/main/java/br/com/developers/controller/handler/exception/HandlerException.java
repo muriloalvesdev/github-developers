@@ -1,4 +1,4 @@
-package br.com.developers.controller.handler;
+package br.com.developers.controller.handler.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
