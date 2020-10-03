@@ -29,7 +29,7 @@ public class UserController {
   private UserService<RegisterDTO, LoginDTO, User> userService;
 
   @PostMapping("/")
-  public ResponseEntity<Object> registerUser(@Validated @RequestBody RegisterDTO registerData) {
+  public ResponseEntity<Object> create(@Validated @RequestBody RegisterDTO registerData) {
     User user = this.userService.registerUser(registerData);
     return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
         .buildAndExpand(user.getId()).toUri()).build();
