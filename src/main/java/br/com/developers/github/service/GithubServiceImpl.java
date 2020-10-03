@@ -1,12 +1,12 @@
-package br.com.developers.github.http.service;
+package br.com.developers.github.service;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponents;
-import br.com.developers.github.http.service.request.Send;
-import br.com.developers.github.http.utils.UrlUtils;
+import br.com.developers.github.service.request.Send;
+import br.com.developers.github.utils.UrlUtils;
 
 @Service
 class GithubServiceImpl implements GithubService {

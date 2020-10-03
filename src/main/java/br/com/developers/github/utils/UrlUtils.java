@@ -1,4 +1,4 @@
-package br.com.developers.github.http.utils;
+package br.com.developers.github.utils;
 
 import java.net.URI;
 import org.apache.commons.lang3.StringUtils;

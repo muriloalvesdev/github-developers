@@ -1,4 +1,4 @@
-package br.com.developers.github.http.service.request;
+package br.com.developers.github.service.request;
 
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;

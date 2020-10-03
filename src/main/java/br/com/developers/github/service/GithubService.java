@@ -1,4 +1,4 @@
-package br.com.developers.github.http.service;
+package br.com.developers.github.service;
 
 import javax.validation.constraints.NotNull;
 import org.springframework.http.ResponseEntity;

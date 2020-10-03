@@ -1,4 +1,4 @@
-package br.com.developers.github.http.service.request.impl;
+package br.com.developers.github.service.request.impl;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
-import br.com.developers.github.http.service.request.Send;
+import br.com.developers.github.service.request.Send;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
