@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.com/muriloalvesdev/github-developers.svg?token=ioemJXEZtsUqgszw2Nq4&branch=master)](https://travis-ci.com/muriloalvesdev/github-developers)
 
-## github-developers
+## GitHub Developers
 
 ## License
 [Apache License 2.0](https://github.com/muriloalvesdev/github-developers/blob/master/LICENSE)
