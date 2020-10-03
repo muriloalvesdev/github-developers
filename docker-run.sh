@@ -1,0 +1,1 @@
+mvn package -DskipTests -Pprod && docker build -t muriloalvesdev/github_developers . && docker-compose up
