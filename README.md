@@ -66,3 +66,7 @@ Caso você queira apenas baixar a imagem e executar a aplicação, basta seguir 
 - Baixe a imagem Docker, utilizando o comando: `$docker pull muriloalvesdev/github_developers`
 - Execute o comando `$docker run <id_imagem>` para executar o container.
 - E agora você ja deve ter a aplicação sendo executada.
+
+# Consumindo a aplicação com Swagger
+- Caso você queira apenas consumir as APIs do projeto, ele está hospedado no [Heroku](https://heroku.com).
+- A URL da aplicação com o Swagger é esta: https://github-developers.herokuapp.com/swagger-ui.html
