@@ -69,4 +69,4 @@ Caso você queira apenas baixar a imagem e executar a aplicação, basta seguir 
 
 # Consumindo a aplicação com Swagger
 - Caso você queira apenas consumir as APIs do projeto, ele está hospedado no [Heroku](https://heroku.com).
-- A URL da aplicação com o Swagger é esta: https://github-developers.herokuapp.com/swagger-ui.html
+- A URL da aplicação com o Swagger é esta: `https://github-developers.herokuapp.com/swagger-ui.html`
