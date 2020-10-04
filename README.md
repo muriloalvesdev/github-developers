@@ -30,3 +30,39 @@
 
  - [Maven](https://maven.apache.org/) - Ferramenta de automação de compilação utilizada primariamente em projetos Java.
  - [Docker](https://docs.docker.com/get-docker/) - Execução de aplicativos de containers.
+
+
+## Instalação
+
+ - Clone o projeto: `$https://github.com/muriloalvesdev/github-developers.git`
+ - Após concluir o Download do projeto, acesse o diretório do mesmo: `$cd github-developers/`
+ 
+```
+OBS: Sobre a instalação existem duas formas, abaixo está o passo a passo, sobre como realizar este procedimento. 
+Mas caso você queira instalar rapidamente o projeto, basta executar o script contido na raiz do projeto: 
+$./docker-run.sh
+```
+ 
+### Instando dependências e executando os testes com Maven:
+
+- Para instalar as dependências e executar os testes, utilize o comando: `$mvn clean package`
+
+## Docker - Construindo a aplicação
+
+- Execute o script `$./docker-run.sh` para construir a aplicação. 
+Este script compila o projeto com o profile de `PROD`, cria uma imagem Docker da aplicação e por fim utiliza o 
+Docker Compose para baixar a imagem do PostgreSQL (banco de dados) e sobe a aplicação.
+- Após executar o script você ja deve ter a aplicação sendo executada.
+```
+OBS: O projeto é executado na porta 8080 e o banco de dados é executado na porta 5432, verifique se essas 
+portas estão disponíveis caso ocorra algum erro. Tenha certeza de que você está com o Docker e o 
+Maven instalados para que você não tenha problemas ao compilar, testar e executar a aplicação.
+```
+
+## Ainda com Docker - Deixei a imagem disponível para Download no [DockerHub](https://hub.docker.com/r/muriloalvesdev/github_developers)
+Caso você queira apenas baixar a imagem e executar a aplicação, basta seguir os passos abaixo:
+`OBS: Você precisa ter o PostgreSQL pré instalado com um database chamado "github_developers" .`
+
+- Baixe a imagem Docker, utilizando o comando: `$docker pull muriloalvesdev/github_developers`
+- Execute o comando `$docker run <id_imagem>` para executar o container.
+- E agora você ja deve ter a aplicação sendo executada.
