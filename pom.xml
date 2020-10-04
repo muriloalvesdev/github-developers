@@ -118,15 +118,15 @@
 			</properties>
 		</profile>
 		<profile>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
 			<id>test</id>
 			<properties>
 				<activatedProperties>test</activatedProperties>
 			</properties>
 		</profile>
 		<profile>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 			<id>prod</id>
 			<properties>
 				<activatedProperties>prod</activatedProperties>
