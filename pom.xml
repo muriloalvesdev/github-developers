@@ -112,6 +112,9 @@
 	</build>
 	<profiles>
 		<profile>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 			<id>staging</id>
 			<properties>
 				<activatedProperties>staging</activatedProperties>
@@ -124,9 +127,6 @@
 			</properties>
 		</profile>
 		<profile>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
 			<id>prod</id>
 			<properties>
 				<activatedProperties>prod</activatedProperties>
