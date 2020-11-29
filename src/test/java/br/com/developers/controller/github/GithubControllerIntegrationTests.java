@@ -2,8 +2,10 @@ package br.com.developers.controller.github;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import java.io.UnsupportedEncodingException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +14,14 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import br.com.developers.constants.UserConstantsForTests;
+import br.com.developers.login.dto.LoginDTO;
+import br.com.developers.login.dto.RegisterDTO;
+import br.com.developers.login.http.request.AccessToken;
 
 @SpringBootTest
-class GithubControllerIntegrationTests {
+class GithubControllerIntegrationTests implements UserConstantsForTests {
 
   private static final String QUALIFIER_USER = "muriloalvesdev";
   private static final String QUALIFIER_REPOSITORIE = "thehero-backend";
@@ -31,10 +38,13 @@ class GithubControllerIntegrationTests {
 
   @Test
   void shouldSearchUsers() throws Exception {
+    AccessToken token = shouldLogIn();
+
     this.mockMvc
         .perform(get(GithubController.PATH + "search/users")
-            .contentType(MediaType.APPLICATION_JSON_VALUE).accept(MediaType.APPLICATION_JSON_VALUE)
-            .param("qualifier", QUALIFIER_USER))
+            .contentType(MediaType.APPLICATION_JSON_VALUE)
+            .header("Authorization", "Bearer " + token.getAccessToken())
+            .accept(MediaType.APPLICATION_JSON_VALUE).param("qualifier", QUALIFIER_USER))
         .andExpect(status().isOk()).andExpect(jsonPath("$.total_count", is(1)))
         .andExpect(jsonPath("$.incomplete_results", is(false)))
         .andExpect(jsonPath("$.items[0].login", is("muriloalvesdev")))
@@ -46,10 +56,13 @@ class GithubControllerIntegrationTests {
 
   @Test
   void shouldSearchRepositories() throws Exception {
+    AccessToken token = shouldLogIn();
+
     this.mockMvc
         .perform(get(GithubController.PATH + "search/repositories")
-            .contentType(MediaType.APPLICATION_JSON_VALUE).accept(MediaType.APPLICATION_JSON_VALUE)
-            .param("qualifier", QUALIFIER_REPOSITORIE))
+            .contentType(MediaType.APPLICATION_JSON_VALUE)
+            .header("Authorization", "Bearer " + token.getAccessToken())
+            .accept(MediaType.APPLICATION_JSON_VALUE).param("qualifier", QUALIFIER_REPOSITORIE))
         .andExpect(status().isOk()).andExpect(jsonPath("$.total_count", is(1)))
         .andExpect(jsonPath("$.incomplete_results", is(false)))
         .andExpect(jsonPath("$.items[0].private", is(false)))
@@ -74,5 +87,27 @@ class GithubControllerIntegrationTests {
         .andExpect(jsonPath("$.items.[0].owner.avatar_url",
             is("https://avatars0.githubusercontent.com/u/35849751?v=4")))
         .andExpect(jsonPath("$.items[0].owner.html_url", is("https://github.com/muriloalvesdev")));
+  }
+
+  private AccessToken shouldLogIn()
+      throws UnsupportedEncodingException, Exception, JsonProcessingException {
+    LoginDTO loginDTO = new LoginDTO();
+    loginDTO.setEmail(EMAIL);
+    loginDTO.setPassword(PASSWORD);
+
+    String response = this.mockMvc
+        .perform(post(PATH_LOGIN).content(createJsonLoginDTO(loginDTO))
+            .contentType(MediaType.APPLICATION_JSON_VALUE))
+        .andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
+
+    return MAPPER.convertValue(response, AccessToken.class);
+  }
+
+  private String createJsonRegisterData(RegisterDTO registerData) throws JsonProcessingException {
+    return MAPPER.writeValueAsString(registerData);
+  }
+
+  private String createJsonLoginDTO(LoginDTO loginDTO) throws JsonProcessingException {
+    return MAPPER.writeValueAsString(loginDTO);
   }
 }

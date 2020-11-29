@@ -1,7 +1,11 @@
 package br.com.developers.constants;
 
-public interface UserConstantsForTests {
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+public interface UserConstantsForTests {
+  static final ObjectMapper MAPPER = new ObjectMapper();
+  static final String PATH = "/api/user/";
+  static final String PATH_LOGIN = "/api/auth/";
   static final String EMAIL = "murilohenrique.ti@outlook.com.br";
   static final String FIRST_NAME = "Murilo";
   static final String LAST_NAME = "Batista";

@@ -19,7 +19,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import br.com.developers.constants.UserConstantsForTests;
 import br.com.developers.login.dto.LoginDTO;
 import br.com.developers.login.dto.RegisterDTO;
@@ -30,11 +29,6 @@ import br.com.developers.provider.RegisterDTOProviderTests;
 @SpringBootTest
 @ActiveProfiles("test")
 public class UserControllerIntegrationTests implements UserConstantsForTests {
-
-  private static final String PATH = "/api/user/";
-  private static final String PATH_LOGIN = "/api/auth/";
-
-  private static final ObjectMapper MAPPER = new ObjectMapper();
 
   @Autowired
   private WebApplicationContext webApplicationContext;
