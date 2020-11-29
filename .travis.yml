@@ -9,6 +9,10 @@ services:
 addons:
   postgresql: "9.5"
 
+env:
+ global:
+   - CODECOV_TOKEN="2c77ac19-9298-48c4-b298-766afd63904a"
+
 install: true
 
 before_install:
@@ -17,3 +21,6 @@ before_install:
 script:
   - chmod +x ./.ci/script.sh 
   - ./.ci/script.sh
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
