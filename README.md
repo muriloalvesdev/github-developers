@@ -1,5 +1,4 @@
 [![Build Status](https://travis-ci.com/muriloalvesdev/github-developers.svg?token=ioemJXEZtsUqgszw2Nq4&branch=master)](https://travis-ci.com/muriloalvesdev/github-developers)
-[![codecov](https://codecov.io/gh/muriloalvesdev/github-developers/branch/master/graph/badge.svg)](https://codecov.io/gh/muriloalvesdev/github-developers/)
 
 ## GitHub Developers API
 
