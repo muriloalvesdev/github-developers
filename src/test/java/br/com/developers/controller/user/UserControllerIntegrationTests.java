@@ -71,7 +71,7 @@ public class UserControllerIntegrationTests implements UserConstantsForTests {
         .perform(post(PATH_LOGIN).content(createJsonLoginDTO(loginDTO))
             .contentType(MediaType.APPLICATION_JSON_VALUE))
         .andExpect(jsonPath("$.message", is("User Not Found with -> email : teste@teste.com.br")))
-        .andExpect(jsonPath("status", is(HttpStatus.NOT_FOUND.value())));
+        .andExpect(jsonPath("$.status", is(HttpStatus.NOT_FOUND.value())));
   }
 
   @Order(4)
